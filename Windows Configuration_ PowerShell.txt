@@ -1,0 +1,21 @@
+1. Change Password <Copy Command below this line>
+net user Administrator *
+
+2. Set Time Zone <Copy Command below this line>
+Set-TimeZone -Name "India Standard Time"
+
+
+3. Change Host Name <Copy Command below this line>
+Rename-Computer -NewName "myWindowsVm01"
+
+4. Restart the VM
+
+5. Install IIS <Copy Command below this line>
+# install IIS server role
+Install-WindowsFeature -name Web-Server -IncludeManagementTools
+
+# remove default htm file
+remove-item  C:\inetpub\wwwroot\iisstart.htm
+
+# Add a new htm file that displays server name
+Add-Content -Path "C:\inetpub\wwwroot\iisstart.htm" -Value $("Welcome to AWS EC2 Demo " + $env:computername)
